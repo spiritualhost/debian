@@ -29,9 +29,6 @@ confirmdecision(){
 
 
 
-
-
-
 #Admin packages
 #Check if sudo is available, then prompt to set up if not
 #https://wiki.debian.org/sudo/
@@ -48,11 +45,7 @@ checksudo(){
         case "$choice" in
             "y")
                 echo "Setting up sudo..."
-                su --login
-                ## Enter the password of the root user as specified during install, then press enter
-                echo "Logged in as root... Installing the sudo package..."
-                apt update && apt install sudo
-                adduser $USERNAME sudo
+                su -c "echo Logged in as root... Installing the sudo package... && apt update && apt install sudo && adduser $USERNAME sudo"
                 ;;
             "n")
                 echo "You have selected NO."
@@ -109,3 +102,18 @@ confirmdecision "$choice"
 checksudo
 
 packageinstall "vim"
+
+
+
+
+
+
+
+
+
+
+
+
+#Finally, enter the root shell to check over the setup before rebooting
+echo "Entering root shell..."
+su --login
