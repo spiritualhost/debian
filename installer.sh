@@ -99,7 +99,19 @@ read -rp "Please enter the password for user $USERNAME: " PASSWORD
 read -rp "The provided password is '$PASSWORD'. Is that correct (y/n): " choice
 confirmdecision "$choice"
 
+#Function being troublesome, come back to this later
 #checksudo
 
-packageinstall "neovim"
+#Loop through user-provided array of packages to install one at a time (errors will be thrown for unfindable packages)
+
+packageslength=${#PACKAGES[@]}
+
+for (( i = 0; i < packageslength; i++ ))
+do
+    currentpackage=${PACKAGES[$i]}
+    packageinstall "$currentpackage"
+done
+
+
+#packageinstall "neovim"
 
