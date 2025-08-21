@@ -18,7 +18,6 @@ error(){
     exit 1
 }
 
-
 #Take in a response for "Are you sure" type questions so as to not need repeated case statement logic
 confirmdecision(){
     case $1 in
@@ -39,37 +38,9 @@ confirmdecision(){
 
 
 #Admin packages
-#Check if sudo is available, then prompt to set up if not
-#https://wiki.debian.org/sudo/
-
-checksudo(){
-
-    if ( which sudo ) ; then
-        echo "Sudo has been set up on this system."
-        su --login
-        
-    else
-        read -rp "Sudo has not been set up on this system, would you like to use it (y/n): "  choice
-
-        case "$choice" in
-            "y")
-                echo "Setting up sudo..."
-                su -c "echo Logged in as root... Installing the sudo package... && apt update && apt install sudo && adduser $USERNAME sudo"
-                ;;
-            "n")
-                echo "You have selected NO."
-                ;;
-            *)
-                echo "Unrecognized response."
-                error
-                ;;
-        esac
-    fi
-
-}
-
 
 #Check if root, on a Debian system, and with stable internet
+#Sudo checks if root, apt-get checks if debian, --qq (update lists) checks if internet connection available
 checkifroot(){
     sudo apt-get update -qq
 }
@@ -117,9 +88,6 @@ read -rp "Please enter the password for user $USERNAME: " PASSWORD
 read -rp "The provided password is '$PASSWORD'. Is that correct (y/n): " choice
 confirmdecision "$choice"
 
-#Function being troublesome, come back to this later
-#checksudo
-
 
 #Loop through user-provided array of packages to install one at a time (errors will be thrown for unfindable packages)
 packageslength=${#PACKAGES[@]}
@@ -131,13 +99,10 @@ do
 done
 
 
-
-
-
-
 #Install desktop environment
 
-######
+read -rp "Would you like to install a desktop environment for user $USERNAME (y/n): " choice
+confirmdecision choice
 
 
 
