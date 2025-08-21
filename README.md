@@ -1,6 +1,8 @@
-### Ubuntu Server Installation Automation
+### Debian Installation Automation
 
-A basic way of getting a Debian server up and running with minimal effort using past configuration settings. 
+***This is currently in progress and doesn't work at all.***
+
+A basic way of getting a Debian system up and running with minimal effort using past configuration settings. 
 
 
 ## What it does
