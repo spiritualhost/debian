@@ -99,21 +99,7 @@ read -rp "Please enter the password for user $USERNAME: " PASSWORD
 read -rp "The provided password is '$PASSWORD'. Is that correct (y/n): " choice
 confirmdecision "$choice"
 
-checksudo
+#checksudo
 
-packageinstall "vim"
+packageinstall "neovim"
 
-
-
-
-
-
-
-
-
-
-
-
-#Finally, enter the root shell to check over the setup before rebooting
-echo "Entering root shell..."
-su --login
