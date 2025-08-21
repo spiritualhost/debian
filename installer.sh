@@ -12,6 +12,13 @@ source ./configs/userinfo.sh
 
 #Ease of writing functions (repeated logic)
 
+#Log to stderr and exit with failure
+error(){
+    printf "%s\n" "$1" >&2
+    exit 1
+}
+
+
 #Take in a response for "Are you sure" type questions so as to not need repeated case statement logic
 confirmdecision(){
     case $1 in
@@ -23,9 +30,11 @@ confirmdecision(){
             ;;
         *)
             echo "Bad response"
+            error
         ;;
     esac
 }
+
 
 
 
@@ -52,11 +61,19 @@ checksudo(){
                 ;;
             *)
                 echo "Unrecognized response."
+                error
                 ;;
         esac
     fi
 
 }
+
+
+#Check if root
+checkifroot(){
+    sudo apt install -y git
+}
+
 
 
 
@@ -85,12 +102,13 @@ desktopenv(){
 
 
 
-
-
-
-
-
 ### The Script ###
+
+#Check if user is root
+checkifroot || error "Are you running this as root, on a Debian system, with a stable internet connection?"
+
+
+
 
 echo "Welcome to Debian Setup Automation. Some prompts may require input, so please keep somwhat of an eye on the terminal during runtime."
 
@@ -102,8 +120,8 @@ confirmdecision "$choice"
 #Function being troublesome, come back to this later
 #checksudo
 
-#Loop through user-provided array of packages to install one at a time (errors will be thrown for unfindable packages)
 
+#Loop through user-provided array of packages to install one at a time (errors will be thrown for unfindable packages)
 packageslength=${#PACKAGES[@]}
 
 for (( i = 0; i < packageslength; i++ ))
@@ -113,5 +131,16 @@ do
 done
 
 
-#packageinstall "neovim"
 
+
+
+
+#Install desktop environment
+
+######
+
+
+
+#Overwrite basic config files in ~/.config
+
+ls ~/.config

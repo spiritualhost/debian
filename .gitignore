@@ -1,6 +1,7 @@
 #Ignore my personal stuff
 iso/
 vm/
+private/
 
 #Ignore userguide files that aren't relevant
 userguide/*.aux
