@@ -68,8 +68,11 @@ checksudo(){
 
 
 #Install packages
+#$1 is assumed to be a package
+#Attempt installations one at a time, which will log errors if one of the user-entered packages doesn't work
 packageinstall(){
-    echo
+    echo "Installing package $1..."
+    sudo apt install -y $1
 }
 
 
@@ -98,12 +101,11 @@ desktopenv(){
 
 echo "Welcome to Debian Setup Automation. Some prompts may require input, so please keep somwhat of an eye on the terminal during runtime."
 
-
 read -rp "Please enter the password for user $USERNAME: " PASSWORD
 
-read -rp "The provided password is '$PASSWORD'. Is that correct?" choice
+read -rp "The provided password is '$PASSWORD'. Is that correct (y/n): " choice
 confirmdecision "$choice"
-
 
 checksudo
 
+packageinstall "vim"

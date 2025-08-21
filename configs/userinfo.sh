@@ -4,14 +4,14 @@
 #User passwords will not be stored
 
 # User info
-USERNAME="roman"
+USERNAME="ryan"
 
 # System info
 #HOSTNAME="my-server"
 #TIMEZONE="America/New_York"
 
 # Dotfiles
-DOTFILES_REPO="https://github.com/you/dotfiles.git"
+DOTFILES_REPO="https://github.com/user/dotfiles.git"
 
 # Packages
-PACKAGES=("vim" "git" "curl" "zsh" "ufw" "htop")
+PACKAGES=("vim" "neovim" "git" "curl" "zsh" "ufw" "htop")
