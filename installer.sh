@@ -65,9 +65,9 @@ configsetup(){
 
 
 #Desktop environment (optional)
-
+#https://wiki.debian.org/DesktopEnvironment
 desktopenv(){
-    echo
+    sudo tasksel
 }
 
 
@@ -99,11 +99,19 @@ do
 done
 
 
-#Install desktop environment
+#Install desktop environment if variable has been specified in userinfo.sh
 
-read -rp "Would you like to install a desktop environment for user $USERNAME (y/n): " choice
-confirmdecision choice
+if [[ -n "$(DESKTOP_ENV)" ]]; then
 
+    echo "You've selected the $DESKTOP_ENV desktop environment. Now installing."
+
+    desktopenv "$DESKTOP_ENV" || error "Failure installing desktop environment."
+
+else
+
+    echo "No desktop environment selected. Moving on."
+
+fi
 
 
 #Overwrite basic config files in ~/.config
