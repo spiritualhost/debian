@@ -69,9 +69,9 @@ checksudo(){
 }
 
 
-#Check if root
+#Check if root, on a Debian system, and with stable internet
 checkifroot(){
-    sudo apt install -y git
+    sudo apt-get update -qq
 }
 
 
