@@ -29,7 +29,18 @@ ubuntu-installer/
 ## How to run it
 
 1) Go through the basic steps of the minimal installation. This can be done by clicking the "Install" option in the Debian bootable media.
-2) 
+
+2) Clone the repo somewhere convenient. I like to create a folder "~/builds" and then move to a better place later. After the repo has been cloned, you may need to make the script executable with:
+
+```
+chmod +x installer.sh
+```
+
+3) Run the script with:
+
+```
+./installer.sh
+```
 
 
 

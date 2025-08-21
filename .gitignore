@@ -1,3 +1,14 @@
 #Ignore my personal stuff
 iso/
 vm/
+
+#Ignore userguide files that aren't relevant
+userguide/*.aux
+userguide/*.fdb_latexmk
+userguide/*.fls 
+userguide/*.log 
+userguide/*.gz
+
+
+
+

@@ -5,8 +5,32 @@
 
 set -euxo pipefail
 
+#Load config
+source ./configs/userinfo.sh
 
 ### Functions ###
+
+#Ease of writing functions (repeated logic)
+
+#Take in a response for "Are you sure" type questions so as to not need repeated case statement logic
+confirmdecision(){
+    case $1 in
+        "y")
+            echo "y"
+            ;;
+        "n")
+            echo "n"
+            ;;
+        *)
+            echo "Bad response"
+        ;;
+    esac
+}
+
+
+
+
+
 
 #Admin packages
 #Check if sudo is available, then prompt to set up if not
@@ -19,16 +43,16 @@ checksudo(){
         su --login
         
     else
-        read -p "Sudo has not been set up on this system, would you like to use it (y/n): "  choice
+        read -rp "Sudo has not been set up on this system, would you like to use it (y/n): "  choice
 
-        case $choice in
+        case "$choice" in
             "y")
                 echo "Setting up sudo..."
                 su --login
                 ## Enter the password of the root user as specified during install, then press enter
                 echo "Logged in as root... Installing the sudo package..."
-                apt install sudo
-                #adduser jhon-smith sudo
+                apt update && apt install sudo
+                adduser $USERNAME sudo
                 ;;
             "n")
                 echo "You have selected NO."
@@ -41,11 +65,6 @@ checksudo(){
 
 }
 
-
-# Update the system 
-sysupdate(){
-    echo
-}
 
 
 #Install packages
@@ -63,7 +82,9 @@ configsetup(){
 
 #Desktop environment (optional)
 
-
+desktopenv(){
+    echo
+}
 
 
 
@@ -76,6 +97,13 @@ configsetup(){
 ### The Script ###
 
 echo "Welcome to Debian Setup Automation. Some prompts may require input, so please keep somwhat of an eye on the terminal during runtime."
+
+
+read -rp "Please enter the password for user $USERNAME: " PASSWORD
+
+read -rp "The provided password is '$PASSWORD'. Is that correct?" choice
+confirmdecision "$choice"
+
 
 checksudo
 
