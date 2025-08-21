@@ -101,7 +101,7 @@ done
 
 #Install desktop environment if variable has been specified in userinfo.sh
 
-if [[ -n "$(DESKTOP_ENV:-)" ]]; then
+if [[ -n "${DESKTOP_ENV:-}" ]]; then
 
     echo "You've selected the $DESKTOP_ENV desktop environment. Now installing."
 
