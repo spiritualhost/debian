@@ -32,7 +32,6 @@ ubuntu-installer/
 
 ```
 echo "PACKAGES=($(apt-mark showmanual | sed 's/.*/\"&\"/' | tr '\n' ' '))"
-
 ```
 
 This exact output should be pasted into the userinfo.sh file to replace the $PACKAGES variable &#8594; this will ensure that any packages the user installed on the original system will also be installed on the new setup.
@@ -41,20 +40,14 @@ This exact output should be pasted into the userinfo.sh file to replace the $PAC
 2) Clone the repo somewhere convenient. I like to create a folder "~/builds" and then move to a better place later. After the repo has been cloned, you may need to make the script executable with:
 
 ```
-
 chmod +x installer.sh
-
 ```
 
 3) Run the script with:
 
 ```
-
 ./installer.sh
-
 ```
-
-
 
 
 ## Tested Versions of Debian

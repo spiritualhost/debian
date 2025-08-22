@@ -16,4 +16,5 @@ DESKTOP_ENV="gnome" #should be y/n -- leave blank for no as of right now
 DOTFILES_REPO="https://github.com/user/dotfiles.git"
 
 # Packages
+# Personalized package list can be copied and pasted over PACKAGES here
 PACKAGES=("vim" "neovim" "git" "curl" "zsh" "ufw" "htop")

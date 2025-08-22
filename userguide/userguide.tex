@@ -1,13 +1,27 @@
 \documentclass{article}
 \usepackage{titlesec}
 
-
 \usepackage{blindtext} %This is for placeholder text
+
+\usepackage{hyperref}
+
+%Setting up the style of hyperlinks and URLs in the document
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan
+    }
+
+\urlstyle{same}
+
+%Document attribution and title
 
 \title{Debian Configuration Automation}
 \author{Ryan Piazza}
 
-
+%Actual document contents
 
 \begin{document}
 
@@ -15,11 +29,13 @@
 
 \maketitle
 
+
 \section{Introduction}
 
 The rationale for using this is to easily get Debian systems up and running, repeatedly. I have personally gone through the graphical installer tens (if not hundreds) of times. Because of this, I feel the need to get a basic script going that can replicate my settings on a repeated basis. 
 
 I've blown up enough systems trying to install some tweak and then not been able to figure out how to get it back. Hopefully, this can help. 
+
 
 \section{What it Does}
 
@@ -29,7 +45,13 @@ The script automates the installation of packages, configs, DEs, etc. This is af
 
 \section{Installing Debian}
 
-The ISO for Debian can be found on their website 
+The ISO for Debian can be found on their website, which is located \href{https://www.debian.org/distrib/}{here}. There are many different versions of Debian you can choose from. 
+
+\subsection{In a Virtual Machine}
+
+\blindtext
+
+\subsection{On Bare Metal}
 
 \blindtext
 
@@ -38,5 +60,7 @@ The ISO for Debian can be found on their website
 \blindtext
 
 \section{Licensing}
+
+\blindtext
 
 \end{document}

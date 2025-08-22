@@ -9,7 +9,5 @@ userguide/*.fdb_latexmk
 userguide/*.fls 
 userguide/*.log 
 userguide/*.gz
-
-
-
-
+userguide/*.toc
+userguide/*.out
