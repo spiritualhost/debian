@@ -7,7 +7,8 @@
 USERNAME="ryan"
 
 # System info
-DESKTOP_ENV="gnome"
+
+DESKTOP_ENV="gnome" #should be y/n -- leave blank for no as of right now
 #HOSTNAME="my-server"
 #TIMEZONE="America/New_York"
 

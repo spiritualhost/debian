@@ -28,18 +28,30 @@ ubuntu-installer/
 
 ## How to run it
 
-1) Go through the basic steps of the minimal installation. This can be done by clicking the "Install" option in the Debian bootable media.
+1) Go through the basic steps of the minimal installation. This can be done by clicking the "Install" option in the Debian bootable media. Before running anything else, run the following script line on your original system to get an overview of the packages needed:
+
+```
+echo "PACKAGES=($(apt-mark showmanual | sed 's/.*/\"&\"/' | tr '\n' ' '))"
+
+```
+
+This exact output should be pasted into the userinfo.sh file to replace the $PACKAGES variable &#8594; this will ensure that any packages the user installed on the original system will also be installed on the new setup.
+
 
 2) Clone the repo somewhere convenient. I like to create a folder "~/builds" and then move to a better place later. After the repo has been cloned, you may need to make the script executable with:
 
 ```
+
 chmod +x installer.sh
+
 ```
 
 3) Run the script with:
 
 ```
+
 ./installer.sh
+
 ```
 
 

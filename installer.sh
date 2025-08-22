@@ -103,7 +103,7 @@ done
 
 if [[ -n "${DESKTOP_ENV:-}" ]]; then
 
-    echo "You've selected the $DESKTOP_ENV desktop environment. Now installing."
+    echo "You've opted in to installing a desktop environment. Now opening setup window."
 
     desktopenv "$DESKTOP_ENV" || error "Failure installing desktop environment."
 
@@ -115,5 +115,4 @@ fi
 
 
 #Overwrite basic config files in ~/.config
-
 ls ~/.config
