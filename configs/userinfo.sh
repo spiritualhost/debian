@@ -8,6 +8,7 @@ USERNAME="ryan"
 
 # System info
 
+
 #DE Choices:
 ## desktop - debian desktop environment
 ## gnome-desktop - GNOME
@@ -25,13 +26,22 @@ USERNAME="ryan"
 
 ##Multiple tasks can be installed at once if you format as 'DESKTOP_ENV="gnome web-server"', for example
 
+##Leave empty for nothing
+
 DESKTOP_ENV="gnome" 
 
 #HOSTNAME="my-server"
 #TIMEZONE="America/New_York"
 
+
 # Dotfiles
-DOTFILES_REPO="https://github.com/user/dotfiles.git"
+
+##Leave empty for nothing
+
+##The below link is just for testing purposes
+
+DOTFILES_REPO="https://github.com/spiritualhost/Various-Useful-Scripts.git"
+
 
 # Packages
 # Personalized package list can be copied and pasted over PACKAGES here

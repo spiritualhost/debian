@@ -35,8 +35,6 @@ confirmdecision(){
 }
 
 
-
-
 #Admin packages
 
 #Check if root, on a Debian system, and with stable internet
@@ -44,9 +42,6 @@ confirmdecision(){
 checkifroot(){
     sudo apt-get update -qq
 }
-
-
-
 
 #Install packages
 #$1 is assumed to be a package
@@ -56,11 +51,14 @@ packageinstall(){
     sudo apt install -y $1
 }
 
-
-
-#Overwrite basic config files in ~/.config
+#Clone config files from git repo provided in config page and then overwrite basic config files for new installation in ~/.config
 configsetup(){
-    echo
+    git clone $1
+    repo_name=$(echo "$path" | sed 's/.*\/\([^.]*\)\..*/\1/') #Extracts the actual name of the folder
+    cd "$repo_name"
+    pwd
+    cd ".."
+    #Here cd into the repo, go through the configs and move them to the proper place, etc, etc, etc. 
 }
 
 
@@ -73,6 +71,7 @@ desktopenv(){
 
 
 
+
 ### The Script ###
 
 #Check if user is root
@@ -80,10 +79,15 @@ checkifroot || error "Are you running this as root, on a Debian system, with a s
 
 echo "Welcome to Debian Setup Automation. Some prompts may require input, so please keep somwhat of an eye on the terminal during runtime."
 
+#Get the user password in case needed later
 read -rp "Please enter the password for user $USERNAME: " PASSWORD
 
 read -rp "The provided password is '$PASSWORD'. This will not be saved. Is that correct (y/n): " choice
 confirmdecision "$choice"
+
+#
+
+
 
 
 #Loop through user-provided array of packages to install one at a time (errors will be thrown for unfindable packages)
@@ -100,7 +104,7 @@ done
 #Install desktop environment if variable has been specified in userinfo.sh
 
 if [[ -n "${DESKTOP_ENV:-}" ]]; then
-    echo "You've opted in to installing a desktop environment. Now opening setup window."
+    echo "You've opted in to installing a desktop environment ($DESKTOP_ENV). Now opening setup window."
     desktopenv "$DESKTOP_ENV" || error "Failure installing desktop environment."
 else
     echo "No desktop environment selected. Moving on."
@@ -109,3 +113,22 @@ fi
 
 #Overwrite basic config files in ~/.config
 ls ~/.config
+
+if [[ -n "${DOTFILES_REPO:-}" ]]; then
+    echo "Copying config files from $DOTFILES_REPO..."
+    configsetup "$DOTFILES_REPO" || error "Error in setting up config. Does the provided git repo exist?"
+else
+    echo "No config files provided. Moving on."
+fi
+
+
+#Install user-specified scripts
+
+##Probably a similar logic to the above functions, maybe an array like with the packages
+
+
+
+
+
+#Last message -- Installed Successfully
+echo "Successful installation. Script will now exit."

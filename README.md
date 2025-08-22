@@ -9,6 +9,8 @@ A basic way of getting a Debian system up and running with minimal effort using 
 
 Using a netinst Debian ISO (located https://www.debian.org/CD/netinst/), the script will take the onerous process of repeatedly setting up Debian machines and automate it. In my opinion, this is much quicker than repeatedly going through the graphical installer. The netinst was chosen because it represents a single CD which enables the installation of Debian, with all packages other than the base system being fetched over the internet. Because of this, a network connection, like Ethernet or WLAN is recommended. 
 
+The setup installs in the current user profile instead of creating a new user because it is often unnecessary to do that. I know I create my basic user profile when going through the initial installer, so it just seems extraneous to do otherwise. 
+
 For the purposes of development, I used the netinst CD image for AMD64 (https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-13.0.0-amd64-netinst.iso). 
 
 This is strongly inspired by Luke Smith's LARBS (https://github.com/LukeSmithxyz/LARBS) and mostly just seemed like a fun project to do. 
