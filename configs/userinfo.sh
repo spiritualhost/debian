@@ -8,7 +8,25 @@ USERNAME="ryan"
 
 # System info
 
-DESKTOP_ENV="gnome" #should be y/n -- leave blank for no as of right now
+#DE Choices:
+## desktop - debian desktop environment
+## gnome-desktop - GNOME
+## xfce-desktop - Xfce
+## gnome-flashback-desktop - GNOME Flashback
+## kde-desktop - KDE Plasma
+## cinnamon-desktop - Cinnamon
+## mate-desktop - MATE
+## lxde-desktop - LXDE
+## lxqt-desktop - LXQT
+## web-server - web server
+## ssh-server - SSH server
+## laptop - laptop
+## blendsel - Choose a Debian Blend for installation
+
+##Multiple tasks can be installed at once if you format as 'DESKTOP_ENV="gnome web-server"', for example
+
+DESKTOP_ENV="gnome" 
+
 #HOSTNAME="my-server"
 #TIMEZONE="America/New_York"
 

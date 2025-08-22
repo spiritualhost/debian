@@ -67,7 +67,7 @@ configsetup(){
 #Desktop environment (optional)
 #https://wiki.debian.org/DesktopEnvironment
 desktopenv(){
-    sudo tasksel
+    sudo tasksel install "$DESKTOP_ENV"
 }
 
 
@@ -78,18 +78,16 @@ desktopenv(){
 #Check if user is root
 checkifroot || error "Are you running this as root, on a Debian system, with a stable internet connection?"
 
-
-
-
 echo "Welcome to Debian Setup Automation. Some prompts may require input, so please keep somwhat of an eye on the terminal during runtime."
 
 read -rp "Please enter the password for user $USERNAME: " PASSWORD
 
-read -rp "The provided password is '$PASSWORD'. Is that correct (y/n): " choice
+read -rp "The provided password is '$PASSWORD'. This will not be saved. Is that correct (y/n): " choice
 confirmdecision "$choice"
 
 
 #Loop through user-provided array of packages to install one at a time (errors will be thrown for unfindable packages)
+
 packageslength=${#PACKAGES[@]}
 
 for (( i = 0; i < packageslength; i++ ))
@@ -102,15 +100,10 @@ done
 #Install desktop environment if variable has been specified in userinfo.sh
 
 if [[ -n "${DESKTOP_ENV:-}" ]]; then
-
     echo "You've opted in to installing a desktop environment. Now opening setup window."
-
     desktopenv "$DESKTOP_ENV" || error "Failure installing desktop environment."
-
 else
-
     echo "No desktop environment selected. Moving on."
-
 fi
 
 
