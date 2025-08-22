@@ -1,6 +1,6 @@
 ### Debian Installation Automation
 
-***This is currently in progress and doesn't work at all.***
+***This is currently in progress and kinda sorta works.***
 
 A basic way of getting a Debian system up and running with minimal effort using past configuration settings. 
 

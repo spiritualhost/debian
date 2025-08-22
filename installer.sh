@@ -34,7 +34,6 @@ confirmdecision(){
     esac
 }
 
-
 #Admin packages
 
 #Check if root, on a Debian system, and with stable internet
@@ -99,7 +98,6 @@ do
     currentpackage=${PACKAGES[$i]}
     packageinstall "$currentpackage"
 done
-
 
 #Install desktop environment if variable has been specified in userinfo.sh
 

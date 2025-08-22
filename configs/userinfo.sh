@@ -46,3 +46,8 @@ DOTFILES_REPO="https://github.com/spiritualhost/Various-Useful-Scripts.git"
 # Packages
 # Personalized package list can be copied and pasted over PACKAGES here
 PACKAGES=("vim" "neovim" "git" "curl" "zsh" "ufw" "htop")
+
+
+#User scripts
+#Logic should go somewhere down here -- probably an array of filepaths? Maybe webpages, then curl?
+
