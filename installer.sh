@@ -53,14 +53,15 @@ packageinstall(){
 #Install user-provided scripts
 scriptinstall(){
     echo "Installing script $1..."
-    sudo chmod +x "./scripts/$1"
-    ./scripts/"$1"
+    sudo chmod +x "$1"
+    ./"$1"
 }
 
 
 
 
 #Clone config files from git repo provided in config page and then overwrite basic config files for new installation in ~/.config
+#This function is still in progress
 configsetup(){
     git clone $1
     repo_name=$(echo "$path" | sed 's/.*\/\([^.]*\)\..*/\1/') #Extracts the actual name of the folder
@@ -138,14 +139,16 @@ scriptslength=${#SCRIPTS[@]}
 
 if [ "$scriptslength" -gt 0 ]; then
     echo "Installing user-provided scripts..."
+    cd "scripts/"
     for (( i = 0; i < scriptslength; i++ )); do
         currentscript=${SCRIPTS[$i]}
-        if [! -f "./scripts/$currentscript" ]; then
-            error "Script ${SCRIPTS[$i]} does not exist in ./scripts/$currentscript. It may need to be moved to that folder."
+        if [ ! -f "$currentscript" ]; then
+            error "Script ${SCRIPTS[$i]} does not exist in scripts/. It may need to be moved to that folder."
         else
             scriptinstall "$currentscript" || error "Error executing script $currentscript. Script may need a matching shebang."
         fi
     done
+    cd ".."
 
 
 
