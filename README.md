@@ -57,6 +57,7 @@ chmod +x installer.sh
 ## Tested Versions of Debian
 
 - Debian 13
+    - Stable
 
 
 ## Requirements
