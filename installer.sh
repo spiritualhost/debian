@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-#This line deliberately causes the script to fail if several issues arise, helps with error handling
+#This line deliberately causes the script to fail if several issues arise, helps with fatalerror handling
 #See https://gist.github.com/mohanpedala/1e2ff5661761d3abd0385e8223e16425?permalink_comment_id=3935570
 
 set -euxo pipefail
@@ -13,9 +13,16 @@ source ./configs/userinfo.sh
 #Ease of writing functions (repeated logic)
 
 #Log to stderr and exit with failure
-error(){
+
+#Error that stops script
+fatalerror(){
     printf "%s\n" "$1" >&2
     exit 1
+}
+
+#Error that outputs to stderr and continues script (non-severe errors)
+error(){
+    printf "%s\n" "$1" >&2
 }
 
 #Take in a response for "Are you sure" type questions so as to not need repeated case statement logic
@@ -29,7 +36,7 @@ confirmdecision(){
             ;;
         *)
             echo "Bad response"
-            error
+            fatalerror
         ;;
     esac
 }
@@ -83,7 +90,7 @@ desktopenv(){
 ### The Script ###
 
 #Check if user is root
-checkifroot || error "Are you running this as root, on a Debian system, with a stable internet connection?"
+checkifroot || fatalerror "Are you running this as root, on a Debian system, with a stable internet connection?"
 
 echo "Welcome to Debian Setup Automation. Some prompts may require input, so please keep somwhat of an eye on the terminal during runtime."
 
@@ -109,7 +116,7 @@ done
 
 if [[ -n "${DESKTOP_ENV:-}" ]]; then
     echo "You've opted in to installing a desktop environment ($DESKTOP_ENV). Now opening setup window."
-    desktopenv "$DESKTOP_ENV" || error "Failure installing desktop environment."
+    desktopenv "$DESKTOP_ENV" || fatalerror "Failure installing desktop environment."
 else
     echo "No desktop environment selected. Moving on."
 fi
@@ -122,7 +129,7 @@ ls ~/.config
 
 #if [[ -n "${DOTFILES_REPO:-}" ]]; then
 #    echo "Copying config files from $DOTFILES_REPO..."
-#    configsetup "$DOTFILES_REPO" || error "Error in setting up config. Does the provided git repo exist?"
+#    configsetup "$DOTFILES_REPO" || fatalerror "Error in setting up config. Does the provided git repo exist?"
 #else
 #    echo "No config files provided. Moving on."
 #fi
@@ -140,9 +147,9 @@ if [ "$scriptslength" -gt 0 ]; then
     for (( i = 0; i < scriptslength; i++ )); do
         currentscript=${SCRIPTS[$i]}
         if [ ! -f "$currentscript" ]; then
-            error "Script ${SCRIPTS[$i]} does not exist in scripts/. It may need to be moved to that folder."
+            fatalerror "Script ${SCRIPTS[$i]} does not exist in scripts/. It may need to be moved to that folder."
         else
-            scriptinstall "$currentscript" || error "Error executing script $currentscript. Script may need a matching shebang."
+            scriptinstall "$currentscript" || fatalerror "Error executing script $currentscript. Script may need a matching shebang."
         fi
     done
     cd ".."
