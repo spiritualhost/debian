@@ -27,7 +27,7 @@ USERNAME="ryan"
 
 ##Leave empty for nothing
 
-DESKTOP_ENV="gnome" 
+DESKTOP_ENV="kde-desktop" 
 
 
 
