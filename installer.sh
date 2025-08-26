@@ -58,8 +58,6 @@ scriptinstall(){
 }
 
 
-
-
 #Clone config files from git repo provided in config page and then overwrite basic config files for new installation in ~/.config
 #This function is still in progress
 configsetup(){
@@ -96,9 +94,6 @@ read -rp "The provided password is '$PASSWORD'. This will not be saved. Is that 
 confirmdecision "$choice"
 
 #
-
-
-
 
 #Loop through user-provided array of packages to install one at a time (errors will be thrown for unfindable packages)
 
