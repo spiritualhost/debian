@@ -55,5 +55,5 @@ PACKAGES=("vim" "neovim" "git" "curl" "zsh" "ufw" "htop")
 #Logic should go somewhere down here -- it should be an array of filepaths for scripts in the scripts directory (.\scripts)
 #There's probably a better way to do this, but this implementation is just to get the script functional.
 
-SCRIPTS=(".\scripts\testscript.sh")
+SCRIPTS=("testscript.sh")
 
