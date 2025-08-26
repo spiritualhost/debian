@@ -116,14 +116,16 @@ fi
 
 
 #Overwrite basic config files in ~/.config
+#this section is currently in progress
+
 ls ~/.config
 
-if [[ -n "${DOTFILES_REPO:-}" ]]; then
-    echo "Copying config files from $DOTFILES_REPO..."
-    configsetup "$DOTFILES_REPO" || error "Error in setting up config. Does the provided git repo exist?"
-else
-    echo "No config files provided. Moving on."
-fi
+#if [[ -n "${DOTFILES_REPO:-}" ]]; then
+#    echo "Copying config files from $DOTFILES_REPO..."
+#    configsetup "$DOTFILES_REPO" || error "Error in setting up config. Does the provided git repo exist?"
+#else
+#    echo "No config files provided. Moving on."
+#fi
 
 
 #Install user-specified scripts
