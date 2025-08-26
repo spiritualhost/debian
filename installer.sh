@@ -50,6 +50,16 @@ packageinstall(){
     sudo apt install -y $1
 }
 
+#Install user-provided scripts
+scriptinstall(){
+    echo "Installing script $1..."
+    sudo chmod +x "./scripts/$1"
+    ./scripts/"$1"
+}
+
+
+
+
 #Clone config files from git repo provided in config page and then overwrite basic config files for new installation in ~/.config
 configsetup(){
     git clone $1
@@ -96,7 +106,7 @@ packageslength=${#PACKAGES[@]}
 for (( i = 0; i < packageslength; i++ ))
 do
     currentpackage=${PACKAGES[$i]}
-    packageinstall "$currentpackage"
+    packageinstall "$currentpackage" || error "Error in installing package ${PACKAGES[$i]}. Does the package exist?"
 done
 
 #Install desktop environment if variable has been specified in userinfo.sh
@@ -124,8 +134,17 @@ fi
 
 ##Probably a similar logic to the above functions, maybe an array like with the packages
 
+scriptslength=${#SCRIPTS[@]}
 
-
+if [ ${#scriptslength[@]} -eq 0 ]; then
+    echo "Installing user-provided scripts..."
+    for (( i = 0; i < scriptslength; i++ ))
+    do
+        currentscript=${SCRIPTS[$i]} || error "Error in executing script ${SCRIPTS[$i]}. There may be an issue with the specified script."
+    done
+else
+    echo "No user scripts provided, moving on."
+fi
 
 
 #Last message -- Installed Successfully
