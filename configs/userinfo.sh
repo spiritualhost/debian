@@ -56,7 +56,7 @@ PACKAGES=(
 
 
 #User scripts
-#Logic should go somewhere down here -- it should be an array of ***filenames*** for scripts in the scripts directory (.\scripts)
+#Logic should go somewhere down here -- it should be an array of ***filenames*** for scripts in the scripts directory (.\user-scripts)
 #The array should like something like SCRIPTS=("testscript.sh")
 #There's probably a better way to do this, but this implementation is just to get the script functional.
 
