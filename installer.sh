@@ -136,12 +136,19 @@ fi
 
 scriptslength=${#SCRIPTS[@]}
 
-if [ ${#scriptslength[@]} -eq 0 ]; then
+if [ "$scriptslength" -gt 0 ]; then
     echo "Installing user-provided scripts..."
-    for (( i = 0; i < scriptslength; i++ ))
-    do
-        currentscript=${SCRIPTS[$i]} || error "Error in executing script ${SCRIPTS[$i]}. There may be an issue with the specified script."
+    for (( i = 0; i < scriptslength; i++ )); do
+        currentscript=${SCRIPTS[$i]}
+        if [! -f "./scripts/$currentscript" ]; then
+            error "Script ${SCRIPTS[$i]} does not exist in ./scripts/$currentscript. It may need to be moved to that folder."
+        else
+            scriptinstall "$currentscript" || error "Error executing script $currentscript. Script may need a matching shebang."
+        fi
     done
+
+
+
 else
     echo "No user scripts provided, moving on."
 fi
