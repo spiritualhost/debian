@@ -7,6 +7,8 @@ A basic way of getting a Debian system up and running with minimal effort using 
 
 ## What it does
 
+The long-term goal is to get the script in such a state where it can create Debian disk images that can immediately be pushed to virtulization (though the option will never be removed to install on bare metal). This way, the OS can be spun up much faster, with consistent configuration settings, fully open source. 
+
 Using a netinst Debian ISO (located https://www.debian.org/CD/netinst/), the script will take the onerous process of repeatedly setting up Debian machines and automate it. In my opinion, this is much quicker than repeatedly going through the graphical installer. The netinst was chosen because it represents a single CD which enables the installation of Debian, with all packages other than the base system being fetched over the internet. Because of this, a network connection, like Ethernet or WLAN is recommended. (The process can also be done with other Debian ISO flavors, but that version has been the most stable thus far)
 
 The setup installs in the current user profile instead of creating a new user because it is often unnecessary to do that. I know I create my basic user profile when going through the initial installer, so it just seems extraneous to do otherwise. 
@@ -19,7 +21,7 @@ This is strongly inspired by Luke Smith's LARBS (https://github.com/LukeSmithxyz
 ## Project Structure
 
 ```
-ubuntu-installer/
+debian/
 ├── installer.sh   # Main installation script
 ├── runtimelog.txt # Script log (name can be changed in configs)
 ├── user-scripts/  # Optional directory where user scripts can be added
