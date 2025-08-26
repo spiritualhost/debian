@@ -1,5 +1,8 @@
 #!/usr/bin/bash
 
+#Setting a name for a logfile
+LOGFILE="runtimelog.txt"
+
 #User info that will be source'd in the main script to make it easier on repeated runs
 #User passwords will not be stored
 # User info

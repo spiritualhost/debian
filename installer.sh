@@ -12,34 +12,38 @@ source ./configs/userinfo.sh
 
 #Ease of writing functions (repeated logic)
 
-#Log to stderr and exit with failure
+#Log errors to terminal and log file
+#Log file name is defined in userinfo.sh
+logger(){
+    logfile=$LOGFILE
+    echo "[$(date +'%Y-%m-%d %H:%M:%S')] $1" | tee -a "$logfile"
+}
+
 
 #Error that stops script
 fatalerror(){
-    printf "%s\n" "$1" >&2
+    logger "FATAL: $1"
     exit 1
 }
 
+
 #Error that outputs to stderr and continues script (non-severe errors)
 error(){
-    printf "%s\n" "$1" >&2
+    logger "Non-Fatal Error: $1"
 }
+
 
 #Take in a response for "Are you sure" type questions so as to not need repeated case statement logic
 confirmdecision(){
-    case $1 in
-        "y")
-            echo "y"
-            ;;
-        "n")
-            echo "n"
-            ;;
-        *)
-            echo "Bad response"
-            fatalerror
-        ;;
-    esac
+    while true; do
+        case $1 in
+            y|Y) return 0 ;;
+            n|N) return 1 ;; 
+            *) error "Bad response"; read -rp "Please enter y or n: " input; set -- "$input" ;;
+        esac
+    done
 }
+
 
 #Admin packages
 
@@ -47,19 +51,21 @@ confirmdecision(){
 #Sudo checks if root, apt-get checks if debian, --qq (update lists) checks if internet connection available
 checkifroot(){
     sudo apt-get update -qq
+    logger "Confirmation: user is root or has sudo permissions. Continuing execution of script."
 }
 
+
 #Install packages
-#$1 is assumed to be a package
 #Attempt installations one at a time, which will log errors if one of the user-entered packages doesn't work
 packageinstall(){
-    echo "Installing package $1..."
+    echo "Installing package $1..." && logger "Installing package $1..." 
     sudo apt install -y $1
 }
 
+
 #Install user-provided scripts
 scriptinstall(){
-    echo "Installing script $1..."
+    echo "Installing script $1..." && logger "Installing script $1..."
     sudo chmod +x "$1"
     ./"$1"
 }
@@ -80,10 +86,9 @@ configsetup(){
 #Desktop environment (optional)
 #https://wiki.debian.org/DesktopEnvironment
 desktopenv(){
+    logger "Installing the $DESKTOP_ENV desktop environment."
     sudo tasksel install "$DESKTOP_ENV"
 }
-
-
 
 
 
@@ -92,13 +97,13 @@ desktopenv(){
 #Check if user is root
 checkifroot || fatalerror "Are you running this as root, on a Debian system, with a stable internet connection?"
 
-echo "Welcome to Debian Setup Automation. Some prompts may require input, so please keep somwhat of an eye on the terminal during runtime."
+echo "Welcome to Debian Setup Automation. After username and password, the script pretty much runs itself. Errors and logs will be output to $LOGFILE."
 
 #Get the user password in case needed later
 read -rp "Please enter the password for user $USERNAME: " PASSWORD
 
 read -rp "The provided password is '$PASSWORD'. This will not be saved. Is that correct (y/n): " choice
-confirmdecision "$choice"
+(confirmdecision "$choice" && echo "User confirmed") || fatalerror "User canceled."  
 
 #
 
@@ -124,7 +129,6 @@ fi
 
 #Overwrite basic config files in ~/.config
 #this section is currently in progress
-
 ls ~/.config
 
 #if [[ -n "${DOTFILES_REPO:-}" ]]; then
@@ -133,6 +137,7 @@ ls ~/.config
 #else
 #    echo "No config files provided. Moving on."
 #fi
+
 
 
 #Install user-specified scripts
@@ -147,19 +152,20 @@ if [ "$scriptslength" -gt 0 ]; then
     for (( i = 0; i < scriptslength; i++ )); do
         currentscript=${SCRIPTS[$i]}
         if [ ! -f "$currentscript" ]; then
-            fatalerror "Script ${SCRIPTS[$i]} does not exist in scripts/. It may need to be moved to that folder."
+            error "Script ${SCRIPTS[$i]} does not exist in scripts/. It may need to be moved to that folder."
         else
-            scriptinstall "$currentscript" || fatalerror "Error executing script $currentscript. Script may need a matching shebang."
+            scriptinstall "$currentscript" || error "Error executing script $currentscript. Script may need a matching shebang."
         fi
     done
     cd ".."
-
-
-
 else
     echo "No user scripts provided, moving on."
 fi
 
 
+
+
+
 #Last message -- Installed Successfully
-echo "Successful installation. Script will now exit."
+read "Successful installation. Would you like to reboot the system (y/n): " choice
+confirmdecision $choice && sudo reboot || echo "Script completed. Thank you for using!" 
