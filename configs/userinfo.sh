@@ -6,8 +6,8 @@
 # User info
 USERNAME="ryan"
 
-# System info
 
+# System info
 
 #DE Choices:
 ## desktop - debian desktop environment
@@ -30,6 +30,9 @@ USERNAME="ryan"
 
 DESKTOP_ENV="gnome" 
 
+
+
+#***Possibly get these ones set up later?
 #HOSTNAME="my-server"
 #TIMEZONE="America/New_York"
 

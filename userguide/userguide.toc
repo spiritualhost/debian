@@ -1,7 +1,8 @@
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
 \contentsline {section}{\numberline {2}What it Does}{2}{section.2}%
 \contentsline {section}{\numberline {3}Installing Debian}{2}{section.3}%
-\contentsline {subsection}{\numberline {3.1}In a Virtual Machine}{2}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}On Bare Metal}{3}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Script Setup}{3}{section.4}%
-\contentsline {section}{\numberline {5}Licensing}{3}{section.5}%
+\contentsline {subsection}{\numberline {3.1}On Bare Metal}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}In a Virtual Machine}{3}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Script Setup}{4}{section.4}%
+\contentsline {section}{\numberline {5}Support}{4}{section.5}%
+\contentsline {section}{\numberline {6}Licensing}{4}{section.6}%
