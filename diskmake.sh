@@ -32,9 +32,4 @@ qemu-system-x86_64 \
     -nic user \
     -display sdl,gl=on \
     -rtc clock=host,base="$TIMEZONE" \
-    -usbdevice tablet \
-    -no-frame \
-    -no-quit 
-
-#Cleanup Debian ISO(s)
-sudo rm "debian-testing*"
+    -usbdevice tablet
