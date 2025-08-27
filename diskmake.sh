@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 #Load some other helpful functions from the installer script
-source "installer.sh"
+source "configs/userinfo.sh"
 
 #Create a baseline disk based on user configs
 create_disk() {
@@ -19,10 +19,14 @@ create_disk $DISKNAME $DISKSIZE
 #Get a Debian ISO
 wget  "https://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso"
 
+#Filename set here with user config
+FILENAME="$1.qcow"
+
+
 #Boot the disk ("test")
 qemu-system-x86_64 \
     -enable-kvm \
     -m "$MEMORY" \
     -boot d \
     -cdrom "debian-testing-amd64-netinst.iso"\
-    -drive file="$1".qcow2,format=qcow2
+    -drive file="$FILENAME",format=qcow2

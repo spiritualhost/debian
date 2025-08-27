@@ -69,8 +69,7 @@ chmod +x installer.sh
 - Debian installation
 - git
 - sudo permissions
-- Qemu (for disk preparation --> $ sudo apt install qemu-utils qemu-system-x86 qemu-system-gui)
-
+- Qemu (for disk preparation --> $ sudo apt install qemu-utils qemu-system-x86_64 qemu-system-gui)
 
 
 
