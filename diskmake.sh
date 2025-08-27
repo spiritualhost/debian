@@ -24,8 +24,13 @@ wget  "https://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/i
 
 #Boot the disk ("test")
 qemu-system-x86_64 \
-    -enable-kvm \
     -m "$MEMORY" \
+    -smp "$CPUS" \
     -boot d \
     -cdrom "debian-testing-amd64-netinst.iso"\
-    -drive file="$FILENAME",format=qcow2
+    -drive file="$FILENAME",format=qcow2 \
+    -nic user \
+    -display sdl
+
+#Cleanup Debian ISO(s)
+sudo rm "debian-testing-amd64-netinst.iso*"

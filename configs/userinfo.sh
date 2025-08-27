@@ -11,6 +11,9 @@ DISKNAME="debian"
 ## This should be a smaller value than your host system. Preallocation is set to "Off" by default. 
 DISKSIZE="25G"
 
+## Number of CPUs
+CPUS="2"
+
 ## Memory should be lighter than the host system's. 
 ## I typically stick around 1/4 - 1/2 of the system memory. \
 MEMORY="8192"
