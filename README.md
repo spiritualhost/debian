@@ -9,9 +9,9 @@ A basic way of getting a Debian system up and running with minimal effort using 
 
 The long-term goal is to get the script in such a state where it can create Debian disk images that can immediately be pushed to virtulization (though the option will never be removed to install on bare metal). This way, the OS can be spun up much faster, with consistent configuration settings, fully open source. 
 
-Using a netinst Debian ISO (located https://www.debian.org/CD/netinst/), the script will take the onerous process of repeatedly setting up Debian machines and automate it. In my opinion, this is much quicker than repeatedly going through the graphical installer. The netinst was chosen because it represents a single CD which enables the installation of Debian, with all packages other than the base system being fetched over the internet. Because of this, a network connection, like Ethernet or WLAN is recommended. (The process can also be done with other Debian ISO flavors, but that version has been the most stable thus far)
+Debian 11 (Bullseye) and later versions support automated installations using the Autoinstall mechanism. The autoinstall file is in the YAML format and, for the purposes of this script, sets up a minimal Debian installation, with most of the work being done by the installer.sh. This allows for quick configuration through the userinfo.sh file, removing the need to dive through YAML. For anybody more used to using Linux config files, this should be less of a barrier to entry. 
 
-The setup installs in the current user profile instead of creating a new user because it is often unnecessary to do that. I know I create my basic user profile when going through the initial installer, so it just seems extraneous to do otherwise. 
+Using a Debian ISO, the script will take the onerous process of repeatedly setting up Debian machines and automate it. A network connection, like Ethernet or WLAN is recommended. 
 
 For the purposes of development, I used the netinst CD image for AMD64 (https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-13.0.0-amd64-netinst.iso). 
 

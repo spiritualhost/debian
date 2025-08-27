@@ -22,9 +22,6 @@ MEMORY="8192"
 TIMEZONE="UTC"
 
 
-
-
-
 # User environment info
 
 #User info that will be source'd in the main script to make it easier on repeated runs
