@@ -3,6 +3,9 @@
 #Load some other helpful functions from the installer script
 source "configs/userinfo.sh"
 
+#Filename set here with user config
+FILENAME="$DISKNAME.qcow"
+
 #Create a baseline disk based on user configs
 create_disk() {
     echo "Creating virtual hard disk '$1'..."
@@ -12,16 +15,12 @@ create_disk() {
 }
 
 #Creat a disk with user configs
-create_disk $DISKNAME $DISKSIZE
+create_disk $FILENAME $DISKSIZE
 
 ## Testing below here
 
 #Get a Debian ISO
 wget  "https://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso"
-
-#Filename set here with user config
-FILENAME="$1.qcow"
-
 
 #Boot the disk ("test")
 qemu-system-x86_64 \
