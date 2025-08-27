@@ -60,6 +60,8 @@ chmod +x installer.sh
 
 - Debian 13
     - Stable
+- Debian 12
+    - Stable
 
 
 ## Requirements
@@ -67,3 +69,12 @@ chmod +x installer.sh
 - Debian installation
 - git
 - sudo permissions
+- Qemu (for disk preparation --> $ sudo apt install qemu-utils qemu-system-x86 qemu-system-gui)
+
+
+
+
+
+
+
+## License

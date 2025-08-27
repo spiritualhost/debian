@@ -1,15 +1,33 @@
 #!/usr/bin/bash
 
-#Setting a name for a logfile
+# Setting a name for a logfile
 LOGFILE="runtimelog.txt"
+
+# Hardware info
+
+## Give the virtual hard disk a name
+DISKNAME="debian"
+
+## This should be a smaller value than your host system. Preallocation is set to "Off" by default. 
+DISKSIZE="25G"
+
+## Memory should be lighter than the host system's. 
+## I typically stick around 1/4 - 1/2 of the system memory. \
+MEMORY="8192"
+
+## Find out what timezone you are in here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+TIMEZONE="UTC"
+
+
+
+
+
+# User environment info
 
 #User info that will be source'd in the main script to make it easier on repeated runs
 #User passwords will not be stored
 # User info
 USERNAME="ryan"
-
-
-# System info
 
 #DE Choices:
 ## desktop - debian desktop environment
@@ -32,17 +50,13 @@ USERNAME="ryan"
 
 DESKTOP_ENV="kde-desktop" 
 
-
-
 #***Possibly get these ones set up later?
 #HOSTNAME="my-server"
 #TIMEZONE="America/New_York"
 
 
 # Dotfiles
-
 ##Leave empty for nothing
-
 ##The below link is just for testing purposes
 
 DOTFILES_REPO="https://github.com/spiritualhost/Various-Useful-Scripts.git"
@@ -61,4 +75,3 @@ PACKAGES=(
 #There's probably a better way to do this, but this implementation is just to get the script functional.
 
 SCRIPTS=("testscript.sh")
-

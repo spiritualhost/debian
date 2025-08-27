@@ -6,7 +6,7 @@
 set -euxo pipefail
 
 #Load config
-source ./configs/userinfo.sh
+source "./configs/userinfo.sh"
 
 ### Functions ###
 
