@@ -6,7 +6,7 @@
 set -euxo pipefail
 
 #Load config
-source "./configs/userinfo.sh"
+source ./configs/userinfo.sh
 
 ### Functions ###
 
@@ -129,7 +129,7 @@ fi
 
 #Overwrite basic config files in ~/.config
 #this section is currently in progress
-ls ~/.config
+#ls ~/.config
 
 #if [[ -n "${DOTFILES_REPO:-}" ]]; then
 #    echo "Copying config files from $DOTFILES_REPO..."

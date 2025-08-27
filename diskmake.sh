@@ -1,10 +1,7 @@
 #!/usr/bin/bash
 
-#Load config
-source "../configs/userinfo.sh"
-
 #Load some other helpful functions from the installer script
-source "../installer.sh"
+source "installer.sh"
 
 #Create a baseline disk based on user configs
 create_disk() {
@@ -17,9 +14,7 @@ create_disk() {
 #Creat a disk with user configs
 create_disk $DISKNAME $DISKSIZE
 
-
 ## Testing below here
-
 
 #Get a Debian ISO
 wget  "https://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso"
