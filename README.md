@@ -10,6 +10,7 @@ For the purposes of development, I used the netinst CD image for AMD64 (https://
 
 This is strongly inspired by Luke Smith's LARBS (https://github.com/LukeSmithxyz/LARBS) and mostly just seemed like a fun project to do. 
 
+The installer script is mostly functional, but could use cleaning up here and there. 
 
 ## Project Structure
 

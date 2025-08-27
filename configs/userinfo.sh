@@ -5,11 +5,6 @@ LOGFILE="runtimelog.txt"
 
 # User environment info
 
-#User info that will be source'd in the main script to make it easier on repeated runs
-#User passwords will not be stored
-# User info
-USERNAME="ryan"
-
 #DE Choices:
 ## desktop - debian desktop environment
 ## gnome-desktop - GNOME

@@ -99,14 +99,6 @@ checkifroot || fatalerror "Are you running this as root, on a Debian system, wit
 
 echo "Welcome to Debian Setup Automation. After username and password, the script pretty much runs itself. Errors and logs will be output to $LOGFILE."
 
-#Get the user password in case needed later
-read -rp "Please enter the password for user $USERNAME: " PASSWORD
-
-read -rp "The provided password is '$PASSWORD'. This will not be saved. Is that correct (y/n): " choice
-(confirmdecision "$choice" && echo "User confirmed") || fatalerror "User canceled."  
-
-#
-
 #Loop through user-provided array of packages to install one at a time (errors will be thrown for unfindable packages)
 
 packageslength=${#PACKAGES[@]}
@@ -137,8 +129,6 @@ fi
 #else
 #    echo "No config files provided. Moving on."
 #fi
-
-
 
 #Install user-specified scripts
 
