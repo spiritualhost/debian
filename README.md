@@ -1,17 +1,10 @@
 ### Debian Installation Automation
 
-***This is currently in progress and kinda sorta works.***
-
-A basic way of getting a Debian system up and running with minimal effort using past configuration settings. 
-
+A basic way of getting a Debian system up and running with minimal effort using past configuration settings. Copy your favorite stuff about your setup into another machine. 
 
 ## What it does
 
-The long-term goal is to get the script in such a state where it can create Debian disk images that can immediately be pushed to virtulization (though the option will never be removed to install on bare metal). This way, the OS can be spun up much faster, with consistent configuration settings, fully open source. 
-
-Debian 11 (Bullseye) and later versions support automated installations using the Autoinstall mechanism. The autoinstall file is in the YAML format and, for the purposes of this script, sets up a minimal Debian installation, with most of the work being done by the installer.sh. This allows for quick configuration through the userinfo.sh file, removing the need to dive through YAML. For anybody more used to using Linux config files, this should be less of a barrier to entry. 
-
-Using a Debian ISO, the script will take the onerous process of repeatedly setting up Debian machines and automate it. A network connection, like Ethernet or WLAN is recommended. 
+Using a Debian ISO, the script will take the onerous process of repeatedly setting up Debian machines and automate it. The script assumes a desired set of defaults, all of which can be set easily in the userinfo.sh file. Autoinstallation for Debian systems is to the point where performing that function is really better done that way. A network connection, like Ethernet or WLAN is recommended. 
 
 For the purposes of development, I used the netinst CD image for AMD64 (https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-13.0.0-amd64-netinst.iso). 
 
@@ -69,11 +62,3 @@ chmod +x installer.sh
 - Debian installation
 - git
 - sudo permissions
-- Qemu (for disk preparation --> $ sudo apt-get install qemu-utils qemu-system-x86_64 qemu-system-gui)
-
-
-
-
-
-
-## License

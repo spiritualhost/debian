@@ -3,25 +3,6 @@
 # Setting a name for a logfile
 LOGFILE="runtimelog.txt"
 
-# Hardware info
-
-## Give the virtual hard disk a name
-DISKNAME="debian"
-
-## This should be a smaller value than your host system. Preallocation is set to "Off" by default. 
-DISKSIZE="25G"
-
-## Number of CPUs
-CPUS="2"
-
-## Memory should be lighter than the host system's. 
-## I typically stick around 1/4 - 1/2 of the system memory. \
-MEMORY="8192"
-
-## Find out what timezone you are in here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-TIMEZONE="UTC"
-
-
 # User environment info
 
 #User info that will be source'd in the main script to make it easier on repeated runs
